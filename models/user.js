@@ -22,7 +22,7 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      default: "Admin",
+      default: "Subscriber",
     },
     image: { type: ObjectId, ref: "Media" },
     website: {
