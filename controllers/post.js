@@ -3,7 +3,7 @@ import User from "../models/user";
 import Category from "../models/category";
 import Media from "../models/media";
 import slugify from "slugify";
-import cloudinary from "cloudinary";
+const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
