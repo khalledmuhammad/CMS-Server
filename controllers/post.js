@@ -25,7 +25,7 @@ export const uploadImage = async (req, res) => {
 export const createPost = async (req, res) => {
   try {
     // console.log(req.body);
-    const { title, content, categories } = req.body;
+    const { title, content, categories , metaTitle , metaDesc } = req.body;
     // check if title is taken
     const alreadyExist = await Post.findOne({
       slug: slugify(title.toLowerCase()),
@@ -68,18 +68,18 @@ export const createPost = async (req, res) => {
   }
 };
 
-// export const posts = async (req, res) => {
-//   try {
-//     const all = await Post.find()
-//       .populate("featuredImage")
-//       .populate("postedBy", "name")
-//       .populate("categories", "name slug")
-//       .sort({ createdAt: -1 });
-//     res.json(all);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+ export const Allposts = async (req, res) => {
+   try {
+     const all = await Post.find()
+       .populate("featuredImage")
+       .populate("postedBy", "name")
+       .populate("categories", "name slug")
+       .sort({ createdAt: -1 });
+     res.json(all);
+   } catch (err) {
+     console.log(err);
+   }
+ };
 
 export const posts = async (req, res) => {
   try {
@@ -160,7 +160,7 @@ export const removePost = async (req, res) => {
 export const editPost = async (req, res) => {
   try {
     const { postId } = req.params;
-    const { title, content, featuredImage, categories } = req.body;
+    const { title,metaTitle ,metaDesc,content, featuredImage, categories } = req.body;
     // get category ids based on category name
     let ids = [];
     for (let i = 0; i < categories.length; i++) {
@@ -177,6 +177,8 @@ export const editPost = async (req, res) => {
         postId,
         {
           title,
+          metaTitle,
+          metaDesc,
           slug: slugify(title),
           content,
           categories: ids,

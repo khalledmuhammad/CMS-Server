@@ -15,6 +15,7 @@ import {
   uploadImage,
   createPost,
   posts,
+  Allposts,
   uploadImageFile,
   media,
   removeMedia,
@@ -37,6 +38,8 @@ router.post(
 router.post("/create-post", requireSignin, canCreateRead, createPost);
 // router.get("/posts", posts);
 router.get("/posts/:page", posts);
+router.get("/Allposts/", Allposts);
+
 router.get("/post/:slug", singlePost);
 router.delete("/post/:postId", requireSignin, canUpdateDeletePost, removePost);
 router.put("/edit-post/:postId", requireSignin, canUpdateDeletePost, editPost);

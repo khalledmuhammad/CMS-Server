@@ -8,6 +8,14 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    metaTitle: {
+      type: String,
+      required: true,
+    },
+    metaDesc: {
+      type: String,
+      required: true,
+    },
     content: {},
     categories: [{ type: ObjectId, ref: "Category" }],
     published: { type: Boolean, default: true },
