@@ -25,7 +25,7 @@ export const uploadImage = async (req, res) => {
 export const createPost = async (req, res) => {
   try {
     // console.log(req.body);
-    const { title, content, categories , metaTitle , metaDesc } = req.body;
+    const { title, content, categories , metaTitle , metaDesc , Schema } = req.body;
     // check if title is taken
     const alreadyExist = await Post.findOne({
       slug: slugify(title.toLowerCase()),
@@ -160,7 +160,7 @@ export const removePost = async (req, res) => {
 export const editPost = async (req, res) => {
   try {
     const { postId } = req.params;
-    const { title,metaTitle ,metaDesc,content, featuredImage, categories } = req.body;
+    const { title,metaTitle ,metaDesc,content, featuredImage, categories , Schema} = req.body;
     // get category ids based on category name
     let ids = [];
     for (let i = 0; i < categories.length; i++) {
@@ -183,6 +183,7 @@ export const editPost = async (req, res) => {
           content,
           categories: ids,
           featuredImage,
+          Schema
         },
         { new: true }
       )

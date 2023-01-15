@@ -16,6 +16,9 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    Schema: {
+      type: String,
+    },
     content: {},
     categories: [{ type: ObjectId, ref: "Category" }],
     published: { type: Boolean, default: true },
